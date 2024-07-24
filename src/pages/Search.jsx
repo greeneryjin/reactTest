@@ -48,6 +48,7 @@ const Search = () => {
         <table>
             <thead>
                 <tr>
+                  <th>번호</th>
                   <th>제목</th>
                   <th>내용</th>
                   <th>작성자</th>
@@ -56,6 +57,7 @@ const Search = () => {
             <tbody>
                 {searchList && searchList.map((bbs, idx) => (
                     <tr key={idx}>
+                        <td>{bbs.id}</td>
                         <td>{bbs.title}</td>
                         <td>{bbs.content}</td>
                         <td>{bbs.writer}</td>

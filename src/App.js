@@ -1,15 +1,14 @@
 import './App.css';
-import Inputs from './component/Inputs';
-import Search from './component/Search';
+import Main from './component/Main';
+import Router from './component/Router';
+import Footer from './component/Footer';
 
 function App() {
 
-
   return (
     <>
-      안녕, 리액트 연습하는 공간이야
-      <Inputs/>
-      <Search/>
+      <Router/>
+      <Footer/>
     </>
   );
 }
