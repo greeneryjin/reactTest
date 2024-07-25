@@ -1,72 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
 const Search = () => {
 
-    //검색 결과 
-    const [searchList, setSearchList] = useState([]);
-    
-    //검색어 Hook
-    const [searchVal, setSearchVal] = useState("");
-
-    //검색어를 저장
-    const changeSearch = (event) => {
-        setSearchVal(event.target.value);
-    };
+    const [searchLists, setSearchList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     //검색어를 가지고 서버에게 요청을 보냄 
-    const search = async () => {
+    const changeSearchList = async () => {
+        setIsLoading(true);
+        setError(null);
+
         try {
-        const response = await axios.get('http://localhost:8080/api/search', {
-            params: {
-                title: searchVal,
-                content: searchVal,
-            },
-        });
-        console.log(response.data);
-        setSearchList(response.data);
+            const response = await axios.get('http://localhost:8080/api/search');
+            setSearchList(response.data);
         } catch (error) {
-          console.log(error);
+             setError('Error fetching List');
+        } finally {
+            setIsLoading(false);
         }
     };
 
+    useEffect(() => {
+        changeSearchList();
+    }, []);
+
     return (
-    <>
-      <div>
-        <table className="search">
-            <tbody>
-                <tr>
-                    <td>
-                        <input type="text" placeholder="검색어" value={searchVal} onChange={changeSearch}/>
-                    </td>
-                    <td>
-                        <button onClick={search} >검색</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <thead>
-                <tr>
-                  <th>번호</th>
-                  <th>제목</th>
-                  <th>내용</th>
-                  <th>작성자</th>
-                </tr>
-            </thead>
-            <tbody>
-                {searchList && searchList.map((bbs, idx) => (
-                    <tr key={idx}>
-                        <td>{bbs.id}</td>
-                        <td>{bbs.title}</td>
-                        <td>{bbs.content}</td>
-                        <td>{bbs.writer}</td>
-                    </tr>
+        <div>
+            {isLoading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
+            <div>
+                {searchLists.map(searchList => (
+                    <div key={searchList.id}>
+                        <p>제목: {searchList.title}</p>
+                        <p>내용: {searchList.content}</p>
+                        <p>작성자: {searchList.writer}</p>
+                        <p>작성일: {searchList.regDate}</p>
+                    </div>
                 ))}
-            </tbody>
-        </table>
-      </div>
-    </>
+            </div>
+        </div>
     );
 }
 
