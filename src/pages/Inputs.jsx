@@ -6,7 +6,7 @@ const Inputs = () => {
     //초기 값을 지정하고 값이 변경되면 set로 변경
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const [write, setWrite] = useState("");
+    const [writer, setWriter] = useState("");
 
     const changeTitle = (event) => {
         setTitle(event.target.value);
@@ -17,14 +17,14 @@ const Inputs = () => {
     };
 
     const changeWrite = (event) => {
-        setWrite(event.target.value);
+        setWriter(event.target.value);
     };
 
     const createBbs = async () => {
         const req = {
           title: title,
           content: content,
-          write: write
+          writer: writer
         };
 
         try {
@@ -60,7 +60,7 @@ const Inputs = () => {
                         작성자
                     </th>
                     <td>
-                        <input value={write} type="text" placeholder="이름 입력" onChange={changeWrite} />
+                        <input value={writer} type="text" placeholder="이름 입력" onChange={changeWrite} />
                     </td>
                 </tr>    
             </table>
