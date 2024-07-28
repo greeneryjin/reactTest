@@ -1,5 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
+const TOKEN = localStorage.getItem('token');
 
 const Inputs = () => {
 
@@ -7,6 +10,7 @@ const Inputs = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [writer, setWriter] = useState("");
+    const navigate = useNavigate();
 
     const changeTitle = (event) => {
         setTitle(event.target.value);
@@ -21,17 +25,22 @@ const Inputs = () => {
     };
 
     const createBbs = async () => {
-        const req = {
-          title: title,
-          content: content,
-          writer: writer
-        };
 
-        try {
-            const response = await axios.post('http://localhost:8080/api/write', req);
-            console.log(response.data);
-        } catch (error) {
-            console.error("There was an error creating the BBS!", error);
+        if(!TOKEN) {
+            navigate("/login");
+        } else {
+            const req = {
+                title: title,
+                content: content,
+                writer: writer
+              };
+      
+              try {
+                  const response = await axios.post('http://localhost:8080/api/write', req);
+                  console.log(response.data);
+              } catch (error) {
+                  console.error("There was an error creating the BBS!", error);
+              }
         }
     }
 

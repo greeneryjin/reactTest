@@ -8,6 +8,7 @@ import Inputs from "../pages/Inputs";
 import OneSearch from "../pages/OneSearch";
 import Search from "../pages/Search";
 import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
 
 const Router = () => {
 
@@ -20,8 +21,9 @@ const Router = () => {
             <Route path="/home" element={<Main/>} />
             <Route path="/write" element={<Inputs/>} />
             <Route path="/search" element={<Search/>} />
-            <Route path="/getOne" element={<OneSearch/>} />
+            <Route path="/OneSearch" element={<OneSearch/>} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signUp" element={<SignUp />} />
             <Route path="/logout" element={<div>로그아웃 페이지</div>} />
             {/*  */}
           </Routes>
