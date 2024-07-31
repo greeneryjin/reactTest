@@ -27,15 +27,14 @@ const Login = () => {
 			console.log("[Login.js] login() success :D");
 			console.log(resp.data);
 
-				alert(resp.data.name + "님, 성공적으로 로그인 되었습니다 🔐");
+			alert(resp.data.name + "님, 성공적으로 로그인 되었습니다 🔐");
 
-				// JWT 토큰 저장
-				localStorage.setItem("token", resp.data.token);
-				localStorage.setItem("id", resp.data.accountId);
+			// JWT 토큰 저장
+			localStorage.setItem("token", resp.data.token);
+			localStorage.setItem("id", resp.data.accountId);
 
-				navigate("/home");
+			navigate("/home");
 			
-
 		}).catch((err) => {
 			console.log("[Login.js] login() error :<");
 			console.log(err);

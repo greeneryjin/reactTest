@@ -39,7 +39,7 @@ const Inputs = () => {
                   const response = await axios.post('http://localhost:8080/api/write', req);
                   console.log(response.data);
               } catch (error) {
-                  console.error("There was an error creating the BBS!", error);
+                  console.error("There was an error creating the 작성 불가!", error);
               }
         }
     }
@@ -74,7 +74,7 @@ const Inputs = () => {
                 </tr>    
             </table>
         </div>
-            <button onClick={createBbs}>버튼</button>
+            <button onClick={createBbs}>생성</button>
         </>
     );
 };

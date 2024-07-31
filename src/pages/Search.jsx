@@ -6,10 +6,11 @@ const Search = () => {
     const [searchLists, setSearchList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+
     const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
     const [size] = useState(10);
     const [totalElements, setTotalElements] = useState(0);
-    const [totalPages, setTotalPages] = useState(0);
 
     //검색어를 가지고 서버에게 요청을 보냄 
     const changeSearchList = async () => {
@@ -18,7 +19,7 @@ const Search = () => {
 
         try {
             const response = await axios.get('http://localhost:8080/api/search', {
-                params: { page, size }
+                params: { page: page - 1, size }
               });
               console.log(response.data);
               setSearchList(response.data);

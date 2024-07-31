@@ -54,12 +54,12 @@ const OneSearch = () => {
                 </tr>
             </thead>
             <tbody>
-                {searchList && searchList.map((bbs, idx) => (
+                {searchList && searchList.map((lists, idx) => (
                     <tr key={idx}>
-                        <td>{bbs.id}</td>
-                        <td>{bbs.title}</td>
-                        <td>{bbs.content}</td>
-                        <td>{bbs.writer}</td>
+                        <td>{lists.id}</td>
+                        <td>{lists.title}</td>
+                        <td>{lists.content}</td>
+                        <td>{lists.writer}</td>
                     </tr>
                 ))}
             </tbody>
